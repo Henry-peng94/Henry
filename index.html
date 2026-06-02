@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HDR 高动态范围影像集</title>
+    <style>
+        /* 1. 纯黑背景与色彩空间声明 */
+        :root {
+            color-scheme: dark; /* 告知系统和浏览器当前为暗色调，触发高动态渲染链路 */
+        }
+        
+        body {
+            margin: 0;
+            padding: 40px 0;
+            background-color: #000000; /* 纯黑背景最能衬托出 HDR 飙亮的视觉冲击力 */
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+        }
+
+        /* 2. 完美的画册自适应容器 */
+        .gallery {
+            width: 100%;
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 3. 核心：HDR 图片渲染样式 */
+        .hdr-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            
+            /* 强制启用 P3 广色域及原生色彩流，不截断隐藏的亮度元数据 */
+            color-profile: display-p3; 
+            
+            /* 优雅的淡入动画，配合硬件瞬间飙亮时的视觉平滑过渡 */
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        .description {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #666666;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HDR Gallery</h1>
+
+    <div class="gallery">
+
+        <!-- 照片卡片 1 -->
+        <div class="item">
+            <!-- ⚠️ 请将 src 中的 photo1.jpg 修改为你真正的文件名（注意区分大小写，如 Sunset.JPG） -->
+            <img class="hdr-img" src="3.jpg" alt="HDR Image 1">
+            <div class="description">IMAGE 01 // 局部高光动态渲染</div>
+        </div>
+
+        <!-- 照片卡片 2 -->
+        <div class="item">
+            <!-- ⚠️ 如果有第二张，修改此处；如果没有，可以把整个 <div class="item">...</div> 删掉 -->
+            <img class="hdr-img" src="4.jpg" alt="HDR Image 2">
+            <div class="description">IMAGE 02 // 物理峰值亮度唤醒</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
